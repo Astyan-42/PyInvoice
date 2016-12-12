@@ -63,8 +63,8 @@ class ServiceProviderInfo(AddressInfo):
     """
     Service provider/Merchant information
     """
-    def __init__(self, name=None, street=None, city=None, state=None, country=None, post_code=None,
-                 vat_tax_number=None):
+    def __init__(self, name=None, provider_id=None, street=None, city=None, state=None, country=None, post_code=None,
+                 vat_tax_number=None, capital=None):
         """
         :type name: str or unicode or None
         :type street: str or unicode or None
@@ -76,6 +76,8 @@ class ServiceProviderInfo(AddressInfo):
         """
         super(ServiceProviderInfo, self).__init__(name, street, city, state, country, post_code)
         self.vat_tax_number = vat_tax_number
+        self.provider_id = provider_id
+        self.capital = capital
 
 
 class ClientInfo(AddressInfo):

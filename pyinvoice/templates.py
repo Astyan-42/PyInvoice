@@ -121,7 +121,9 @@ class SimpleInvoice(SimpleDocTemplate):
                      (STATE, self.constants[STATE]),
                      (COUNTRY, self.constants[COUNTRY]), 
                      (POST_CODE, self.constants[POST_CODE]), 
-                     (VAT_TAX_NUMBER, self.constants[VAT_TAX_NUMBER])]
+                     (VAT_TAX_NUMBER, self.constants[VAT_TAX_NUMBER]),
+                     (PROVIDER_ID, self.constants[PROVIDER_ID]),
+                     (CAPITAL, self.constants[CAPITAL])]
 
             return self._attribute_to_table_data(self.service_provider_info, props)
 
