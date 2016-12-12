@@ -207,16 +207,16 @@ class SimpleInvoice(SimpleDocTemplate):
                     Paragraph(item.description, self._defined_styles.get('TableParagraph')),
                     item.units,
                     item.unit_price,
-                    item.amount
+                    str(item.amount)+' '+item.currency
                 )
             )
             item_subtotal += item.amount
 
-        return item_data, item_subtotal
+        return item_data, item_subtotal, item.currency
 
     def _item_data_and_style(self):
         # Items
-        item_data, item_subtotal = self._item_raw_data_and_subtotal()
+        item_data, item_subtotal, currency = self._item_raw_data_and_subtotal()
         style = []
 
         if not item_data:
@@ -238,7 +238,7 @@ class SimpleInvoice(SimpleDocTemplate):
         # ##### Subtotal #####
         rounditem_subtotal = self.getroundeddecimal(item_subtotal, self.precision)
         item_data.append(
-            (self.constants[SUBTOTAL], '', '', '', rounditem_subtotal)
+            (self.constants[SUBTOTAL], '', '', '', str(rounditem_subtotal)+' '+currency)
         )
 
         style.append(('SPAN', (0, sum_start_y_index), (sum_start_x_index, sum_start_y_index)))
@@ -249,7 +249,7 @@ class SimpleInvoice(SimpleDocTemplate):
             tax_total = item_subtotal * (Decimal(str(self._item_tax_rate)) / Decimal('100'))
             roundtax_total = self.getroundeddecimal(tax_total, self.precision)
             item_data.append(
-                (self.constants[TAX]+' ({0}%)'.format(self._item_tax_rate), '', '', '', roundtax_total)
+                (self.constants[TAX]+' ({0}%)'.format(self._item_tax_rate), '', '', '', str(roundtax_total)+' '+currency)
             )
             sum_start_y_index += 1
             style.append(('SPAN', (0, sum_start_y_index), (sum_start_x_index, sum_start_y_index)))
@@ -260,7 +260,7 @@ class SimpleInvoice(SimpleDocTemplate):
         # Total
         total = item_subtotal + (tax_total if tax_total else Decimal('0'))
         roundtotal = self.getroundeddecimal(total, self.precision)
-        item_data.append((self.constants[TOTAL], '', '', '', roundtotal))
+        item_data.append((self.constants[TOTAL], '', '', '', str(roundtotal)+' '+currency))
         sum_start_y_index += 1
         style.append(('SPAN', (0, sum_start_y_index), (sum_start_x_index, sum_start_y_index)))
         style.append(('ALIGN', (0, sum_start_y_index), (sum_end_x_index, -1), 'RIGHT'))

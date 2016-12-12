@@ -105,7 +105,7 @@ class Item(object):
     """
     Product/Item information
     """
-    def __init__(self, name, description, units, unit_price):
+    def __init__(self, name, description, units, unit_price, currency):
         """
         Item modal init
         :param name: Item name
@@ -122,6 +122,7 @@ class Item(object):
         self.description = description
         self.units = units
         self.unit_price = unit_price
+        self.currency = currency
 
     @property
     def amount(self):
