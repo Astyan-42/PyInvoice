@@ -40,9 +40,10 @@ class TableWithHeader(Table):
 
 
 class PaidStamp(object):
-    def __init__(self, x, y):
+    def __init__(self, x, y, stamp='PAID'):
         self.x = x
         self.y = y
+        self.stamp = stamp
 
     def __call__(self, canvas, doc):
         # "PAID"
@@ -51,7 +52,7 @@ class PaidStamp(object):
         canvas.setFillColor(colors.red)
         canvas.setStrokeColor(colors.red)
         canvas.rotate(45)
-        canvas.drawString(self.x, self.y, 'PAID')
+        canvas.drawString(self.x, self.y, self.stamp)
         canvas.setLineWidth(4)
         canvas.setLineJoin(1)  # Round join
         canvas.rect(self.x - .25 * inch, self.y - .25 * inch, width=2*inch, height=inch)

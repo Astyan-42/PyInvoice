@@ -325,6 +325,7 @@ class SimpleInvoice(SimpleDocTemplate):
 
         kwargs = {}
         if self.is_paid:
-            kwargs['onFirstPage'] = PaidStamp(7 * inch, 5.8 * inch)
+            kwargs['onFirstPage'] = PaidStamp(7 * inch, 5.8 * inch, 
+                                              self.constants[PAID])
 
         self.build(self._story, **kwargs)
