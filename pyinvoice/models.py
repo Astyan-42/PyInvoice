@@ -26,7 +26,7 @@ class InvoiceInfo(object):
     """
     Invoice information
     """
-    def __init__(self, invoice_id=None, invoice_datetime=None, due_datetime=None):
+    def __init__(self, invoice_id=None, invoice_datetime=None, due_datetime=None, invoice_status=None):
         """
         Invoice info
         :param invoice_id: Invoice id
@@ -39,6 +39,7 @@ class InvoiceInfo(object):
         self.invoice_id = invoice_id
         self.invoice_datetime = invoice_datetime
         self.due_datetime = due_datetime
+        self.invoice_status = invoice_status
 
 
 class AddressInfo(object):

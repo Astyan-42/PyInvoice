@@ -101,7 +101,8 @@ class SimpleInvoice(SimpleDocTemplate):
         if isinstance(self.invoice_info, InvoiceInfo):
             props = [(INVOICE_ID, self.constants[INVOICE_ID]), 
                      (INVOICE_DATETIME, self.constants[INVOICE_DATETIME]),
-                     (DUE_DATE, self.constants[DUE_DATE])]
+                     (DUE_DATE, self.constants[DUE_DATE]),
+                     (INVOICE_STATUS, self.constants[INVOICE_STATUS])]
 
             return self._attribute_to_table_data(self.invoice_info, props)
 
